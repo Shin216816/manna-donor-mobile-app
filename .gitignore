@@ -1,0 +1,17 @@
+.dart_tool
+.idea
+android
+build
+docs
+linux
+macos
+test
+web
+windows
+.env
+.flutter-plugins-dependencies
+.metadata
+all_files.txt
+nul
+.packages
+.pub-cache
