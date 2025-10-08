@@ -15,6 +15,12 @@ class CacheInvalidationManager {
 
   // Define cache invalidation rules for different endpoints
   static const Map<String, List<String>> _cacheInvalidationRules = {
+    // Authentication endpoints - only refresh user profile, not bank data
+    '/mobile/auth/register': ['user_profile'],
+    '/mobile/auth/login': ['user_profile'],
+    '/mobile/auth/logout': ['user_profile'],
+    '/mobile/auth/refresh': [],
+    
     // Bank-related endpoints
     '/mobile/bank/accounts': ['bank_accounts'],
     '/mobile/bank/preferences': ['preferences'],

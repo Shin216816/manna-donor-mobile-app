@@ -1368,12 +1368,10 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
               SliverToBoxAdapter(
                 child: _buildModernHeader(isDark, paymentMethods.length),
               ),
-              
+
               // Content section
               if (paymentMethods.isEmpty)
-                SliverFillRemaining(
-                  child: _buildModernEmptyState(isDark),
-                )
+                SliverFillRemaining(child: _buildModernEmptyState(isDark))
               else ...[
                 // Payment methods list
                 SliverPadding(
@@ -1389,16 +1387,12 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
                     ),
                   ),
                 ),
-                
+
                 // Add another payment method button
-                SliverToBoxAdapter(
-                  child: _buildAddMethodButton(isDark),
-                ),
-                
+                SliverToBoxAdapter(child: _buildAddMethodButton(isDark)),
+
                 // Bottom spacing
-                SliverToBoxAdapter(
-                  child: SizedBox(height: 100.sp),
-                ),
+                SliverToBoxAdapter(child: SizedBox(height: 100.sp)),
               ],
             ],
           );
@@ -1620,7 +1614,11 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
     );
   }
 
-  Widget _buildErrorState(String error, bool isDark, BankProvider bankProvider) {
+  Widget _buildErrorState(
+    String error,
+    bool isDark,
+    BankProvider bankProvider,
+  ) {
     return Center(
       child: Container(
         margin: EdgeInsets.all(24.sp),
@@ -1765,8 +1763,9 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
-                    color: (isDark ? Colors.white : Colors.black87)
-                        .withValues(alpha: 0.7),
+                    color: (isDark ? Colors.white : Colors.black87).withValues(
+                      alpha: 0.7,
+                    ),
                   ),
                 ),
               ],
@@ -1774,10 +1773,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
           ),
           if (paymentMethodCount > 0)
             Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 12.sp,
-                vertical: 6.sp,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
               decoration: BoxDecoration(
                 color: AppColors.success.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(12.sp),
@@ -1851,8 +1847,9 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
-                color: (isDark ? Colors.white : Colors.black87)
-                    .withValues(alpha: 0.6),
+                color: (isDark ? Colors.white : Colors.black87).withValues(
+                  alpha: 0.6,
+                ),
                 height: 1.4,
               ),
               textAlign: TextAlign.center,
@@ -1890,13 +1887,12 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
     return Container(
       padding: EdgeInsets.all(24.sp),
       decoration: BoxDecoration(
-        color: isDark 
+        color: isDark
             ? AppColors.darkCard.withValues(alpha: 0.5)
             : Colors.white.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(20.sp),
         border: Border.all(
-          color: (isDark ? Colors.white : Colors.black)
-              .withValues(alpha: 0.1),
+          color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.1),
         ),
       ),
       child: Column(
@@ -1951,7 +1947,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
 
   Widget _buildModernPaymentCard(PaymentMethod method, bool isDark, int index) {
     final isCard = method.type == 'card';
-    
+
     return Container(
       margin: EdgeInsets.only(bottom: 16.sp),
       child: Material(
@@ -1978,10 +1974,11 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
                   offset: const Offset(0, 5),
                 ),
                 BoxShadow(
-                  color: (isCard
-                          ? _getCardGradient(method.cardBrand, isDark).first
-                          : _getBankGradient(isDark).first)
-                      .withValues(alpha: 0.15),
+                  color:
+                      (isCard
+                              ? _getCardGradient(method.cardBrand, isDark).first
+                              : _getBankGradient(isDark).first)
+                          .withValues(alpha: 0.15),
                   blurRadius: 25,
                   offset: const Offset(0, 10),
                 ),
@@ -2003,7 +2000,9 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
                             borderRadius: BorderRadius.circular(12.sp),
                           ),
                           child: Icon(
-                            isCard ? Icons.credit_card_rounded : Icons.account_balance_rounded,
+                            isCard
+                                ? Icons.credit_card_rounded
+                                : Icons.account_balance_rounded,
                             color: Colors.white,
                             size: 20.sp,
                           ),
@@ -2067,7 +2066,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
                       ),
                   ],
                 ),
-                
+
                 SizedBox(height: 20.sp),
 
                 // Card/Account number
@@ -2218,23 +2217,15 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen>
   Widget _buildFloatingAddButton(bool isDark) {
     return FloatingActionButton.extended(
       onPressed: _addPaymentMethod,
-      icon: Icon(
-        Icons.add_rounded,
-        size: 24.sp,
-      ),
+      icon: Icon(Icons.add_rounded, size: 24.sp),
       label: Text(
         'Add Payment Method',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 16.sp,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
       ),
       backgroundColor: isDark ? AppColors.darkPrimary : AppColors.primary,
       foregroundColor: Colors.white,
       elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.sp),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
     );
   }
 }
